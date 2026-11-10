@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bharat Niti Lipi: publication flow for Acts and subordinate legislation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#FAFBFC;
+  --card:#FFFFFF;
+  --ink:#1D2433;
+  --ink-2:#4A5263;
+  --ink-3:#7A8292;
+  --line:#D5D9E0;
+  --line-2:#9AA1AE;
+  --link:#1F5FA8;
+  --acts:#2F6FB3;
+  --acts-soft:#E8F0FA;
+  --sub:#4C8A1E;
+  --sub-soft:#EDF5E4;
+  --shared:#8A909B;
+  --prop-bg:#FBF0D9;
+  --prop-ink:#7A5310;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#14171D;
+    --card:#1C2028;
+    --ink:#E8EAEE;
+    --ink-2:#B4BAC5;
+    --ink-3:#8A919D;
+    --line:#343A45;
+    --line-2:#5B6270;
+    --link:#7EB3EC;
+    --acts:#6FA6E0;
+    --acts-soft:#1B2A3B;
+    --sub:#8DC45A;
+    --sub-soft:#1F2C17;
+    --shared:#7D838E;
+    --prop-bg:#3A2E15;
+    --prop-ink:#F0C97A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#14171D;--card:#1C2028;--ink:#E8EAEE;--ink-2:#B4BAC5;--ink-3:#8A919D;
+  --line:#343A45;--line-2:#5B6270;--link:#7EB3EC;--acts:#6FA6E0;--acts-soft:#1B2A3B;
+  --sub:#8DC45A;--sub-soft:#1F2C17;--shared:#7D838E;--prop-bg:#3A2E15;--prop-ink:#F0C97A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Outfit",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+main{max-width:1080px;margin:0 auto;padding:40px 24px 64px}
+header{max-width:720px;margin-bottom:28px}
+h1{font-size:30px;line-height:1.2;font-weight:600;margin:0 0 10px;letter-spacing:-0.01em}
+.lede{font-size:17px;color:var(--ink-2);margin:0 0 6px}
+.status{font-size:14px;color:var(--ink-3);margin:0}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:var(--ink-2);margin:0 0 14px;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px}
+.sw{width:30px;height:14px;border-radius:4px;display:inline-block;flex-shrink:0}
+.sw-acts{border:2px dashed var(--acts)}
+.sw-sub{border:2px dashed var(--sub)}
+.sw-shared{border:2px dashed var(--shared)}
+.sw-branch{border:1.5px dotted var(--line-2)}
+.scope{border:1.5px dotted var(--line-2);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--ink-2);margin:0 0 24px;max-width:860px}
+
+.group{border:2px dashed var(--shared);border-radius:18px;padding:16px}
+.group-title{font-size:17px;font-weight:600;margin:0 0 14px}
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.track{border-radius:14px;padding:14px;display:flex;flex-direction:column}
+.track-acts{border:2px dashed var(--acts)}
+.track-sub{border:2px dashed var(--sub)}
+.track-title{font-size:15px;font-weight:600;margin:0 0 12px;padding:6px 10px;border-radius:8px}
+.track-acts .track-title{background:var(--acts-soft);color:var(--acts)}
+.track-sub .track-title{background:var(--sub-soft);color:var(--sub)}
+
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;break-inside:avoid}
+.step h3{font-size:15px;font-weight:600;margin:0 0 4px;line-height:1.35}
+.num{color:var(--ink-3);font-weight:500;margin-right:8px;font-variant-numeric:tabular-nums}
+.track-acts .num{color:var(--acts)}
+.track-sub .num{color:var(--sub)}
+.step p{font-size:14px;color:var(--ink-2);margin:0 0 8px}
+.refs{font-size:13px;display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;padding:0;list-style:none}
+.branch{border:1.5px dotted var(--line-2);border-radius:7px;padding:7px 10px;font-size:13px;color:var(--ink-2);margin-top:10px}
+.branch-sub{border-color:var(--sub)}
+.prop{display:inline-block;font-size:12px;font-weight:500;padding:1px 7px;border-radius:5px;background:var(--prop-bg);color:var(--prop-ink);margin-right:4px}
+
+.arrow{display:flex;justify-content:center;padding:6px 0;color:var(--ink-3)}
+.arrow svg{width:16px;height:16px}
+.joint{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--ink-2);padding:12px 0}
+.joint svg{width:18px;height:18px;color:var(--ink-3)}
+
+footer{margin-top:32px;font-size:13px;color:var(--ink-3);max-width:720px}
+
+@media (max-width:720px){
+  main{padding:28px 16px 48px}
+  h1{font-size:25px}
+  .lanes{grid-template-columns:1fr}
+  .group{padding:12px}
+}
+@media print{
+  :root{--paper:#fff;--card:#fff}
+  body{font-size:12px}
+  main{max-width:none;padding:0}
+  .step,.branch,.track-title{break-inside:avoid}
+  .group{break-inside:auto}
+  a{color:#1F5FA8}
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Bharat Niti Lipi: publication flow for Acts and subordinate legislation</h1>
+<p class="lede">How a signed law moves from Parliament or a ministry to the e-Gazette, through parliamentary scrutiny, to public verification. Each step links to its legal source.</p>
+<p class="status">Draft for discussion, 10 November 2026.</p>
+</header>
+
+<ul class="legend" aria-label="Legend">
+<li><i class="sw sw-acts" aria-hidden="true"></i>Acts track</li>
+<li><i class="sw sw-sub" aria-hidden="true"></i>Subordinate legislation track</li>
+<li><i class="sw sw-shared" aria-hidden="true"></i>Both tracks</li>
+<li><i class="sw sw-branch" aria-hidden="true"></i>Branch or condition</li>
+<li><span class="prop">Proposal</span>Design choice, not current law</li>
+</ul>
+
+<p class="scope">Scope: from passage by both Houses (Manual 9.21) and from the grant of rule-making power (Manual 11.10). Drafting and passage (Manual 9.1 to 9.20) come before this flow. “Manual” is the Manual of Parliamentary Procedures in the Government of India.</p>
+
+<!-- ISSUANCE -->
+<section class="group" aria-labelledby="g-issuance">
+<h2 class="group-title" id="g-issuance">Issuance: two parallel tracks</h2>
+<div class="lanes">
+
+<div class="track track-acts">
+<h3 class="track-title">A. Acts of Parliament</h3>
+
+<article class="step"><h3><span class="num">A1</span>Bill passed by both Houses</h3>
+<p>Copy to the Legislative Department for scrutiny and correction of patent errors.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.19, 9.21(a)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A2</span>Reprint and second scrutiny</h3>
+<p>Azure laid paper, “as passed by the Houses of Parliament”. Scrutinised again. In BNL, this is the bill file to be signed.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(b)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A3</span>Chairman or Speaker signs (signature 1)</h3>
+<p>Two copies. Money Bill: the Speaker’s certificate is endorsed.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(c)</a></li><li><a href="https://indiankanoon.org/doc/88656708/">Lok Sabha Rule 128</a></li><li><a href="https://cms.rajyasabha.nic.in/UploadedFiles/Procedure/RajyaSabhaAtWork/English/665-760/CHAPTER21.pdf">Rajya Sabha at Work, ch. 21</a></li><li><a href="https://future.indiankanoon.org/doc/352055">Constitution, Art. 110(4)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A4</span>Sent to the President through the Legislative Department</h3>
+<p>The Legislative Department verifies signature 1 and forwards the file unchanged.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(c)</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.10</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A5</span>President decides</h3>
+<p>Assent: signature 2, a counter signature over signature 1. The assent date is the date the Bill becomes an Act.</p>
+<ul class="refs"><li><a href="https://www.constitutionofindia.net/articles/article-111-assent-to-bills">Constitution, Art. 111</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.9(5)</a></li><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(e)</a></li></ul>
+<div class="branch">Withhold: the flow stops. Return (not a Money Bill): the Houses reconsider, then back to A1.</div></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A6</span>Assent date notified</h3>
+<p>To the administrative ministry and the Ministry of Parliamentary Affairs.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(e)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A7</span>Custody of the signed Act</h3>
+<p>The Legislative Department, the Secretariat and the President’s Secretariat each keep a copy. In BNL, each archives the same signed file.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.21(e)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">A8</span>BNL Act made and signed (signature 3)</h3>
+<p>Act number, assent date and a link to the signed bill. Submitted for the Gazette of India Extraordinary.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.22(a)</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.9</a></li></ul></article>
+</div>
+
+<div class="track track-sub">
+<h3 class="track-title">B. Subordinate legislation</h3>
+
+<article class="step"><h3><span class="num">B1</span>Rule-making power in force</h3>
+<p>Starts after D2. The ministry identifies the sections that give the power and keeps a register. Rules are due in 6 months, or the Committee on Subordinate Legislation gives an extension of up to 3 months at a time.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.10, 11.11, 11.3.1, 11.3.2</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B2</span>Ministry frames draft rules in BNL</h3>
+<p>Each rule links to the section that gives the power. Checklist: consultations done, competent approval obtained, gazette references of the principal rules added.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.1.2, 11.1.3</a></li><li><a href="https://docs.google.com/presentation/d/1i7TD_sj9L16fqap5Gftg4k5S5cQQ3VjZ7eDWGCLGX4E">BNL deck: delegated legislation linkage</a></li></ul>
+<div class="branch">The Act does not require previous publication: go to B5.</div></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B3</span>Draft published for objections</h3>
+<p>Through C1 to C9, marked as a draft. Objections within 30 days. Registered letters or press publication if needed.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.2(a) to (c)</a></li><li><a href="https://spicyip.com/2017/03/a-push-for-procedural-certainty.html">2014 pre-legislative consultation policy</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B4</span>Objections considered</h3>
+<p>After 30 clear days. Final rules in 3 months (few objections) or 6 months (many). The preamble cites the draft.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.2(d), (e), 11.1.3(iii)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B5</span>Legislative Department vets</h3>
+<p>From the constitutional, legal and drafting points of view. <span class="prop">Proposal</span>A vetting signature, checked at C3. Decision pending.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.1.2, 11.2(f)</a></li><li><a href="https://www.tribuneindia.com/news/india/parliamentary-panel-taken-aback-as-nmc-issues-regulations-without-law-ministry-clearance/">Committee on Subordinate Legislation on vetting</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B6</span>Translation</h3>
+<p>Hindi version prepared. English and Hindi copies are needed for laying.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.11, 11.5.2</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">B7</span>Ministry LPO signs and submits</h3>
+<p>DSC or eSign. The ministry is responsible for submitting the notification.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.4, 11.5.4(i)</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E): DSC</a></li><li><a href="https://cca.gov.in/eSign_gazette_notification.html">G.S.R. 446(E): eSign</a></li></ul></article>
+</div>
+
+</div>
+</section>
+
+<div class="joint"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v4c0 3 6 4 6 7v3M15 2v4c0 3-6 4-6 7"/><path d="M6 13l3 3 3-3"/></svg>A8 and B7 both go to C1</div>
+
+<!-- PUBLICATION -->
+<section class="group" aria-labelledby="g-pub">
+<h2 class="group-title" id="g-pub">C. Publication by the Custodian (both tracks)</h2>
+
+<article class="step"><h3><span class="num">C1</span>Intake API</h3>
+<p>Extends the eGazette e-Publish module. Gazette notifications are e-published only, under G.S.R. 746(E) of 30 September 2015.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.3</a></li><li><a href="https://egazette.gov.in">eGazette</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C2</span>Authenticate submitter</h3>
+<p>The submitting organisation proves its identity with an organisational certificate.</p>
+<ul class="refs"><li><a href="https://cca.gov.in/sites/files/pdf/guidelines/CCA-IOG.pdf">CCA Interoperability Guidelines</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C3</span>Validate file and signatures</h3>
+<p>BNL schema, each signature, certificate status, signer authorised on the signing date, and an XSLT that renders all of the BNL file, including meta.</p>
+<ul class="refs"><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.9(6), r.10, r.11</a></li></ul>
+<div class="branch">Invalid: returned to the sender with the reason, then back to A8 or B7.</div></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C4</span>Lock (freeze)</h3>
+<p>No change after this point.</p>
+<ul class="refs"><li><a href="https://eur-lex.europa.eu/content/oj/e-oj/signaturePolicy-EN.pdf">EU Official Journal Signature Policy, s.3.1.1.3 (precedent)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C5</span>Number and wrap</h3>
+<p>G.S.R. or S.O. number, Part and Section of the Gazette. Two amendments to the same rules in one issue keep their order. Wrapped in an AKN officialGazette issue.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.2(c), 11.7.5</a></li><li><a href="https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/os-part2-specs_xsd_Element_officialGazette.html">AKN officialGazette</a></li><li><a href="https://docs.oasis-open.org/legaldocml/akn-core/v2.0/os/akn-core-v2.0-namespace.html">AKN 3.1 namespace</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C6</span>Organisation seal and timestamp</h3>
+<p>The Controller of Publications, as Custodian, seals with a Document Signer certificate. Assumption: chosen for high volume and to avoid dependence on individual officers.</p>
+<ul class="refs"><li><a href="https://egazette.gov.in/Aboutus.aspx">Custodian: Controller of Publications</a></li><li><a href="https://cca.gov.in/sites/files/pdf/guidelines/CCA-ESAIG.pdf">CCA-ESAIG: Document Signer</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.11: RFC 3161</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C7</span>Append hash to public log</h3>
+<p><span class="prop">Proposal</span>An append-only log of every publication hash.</p>
+<ul class="refs"><li><a href="https://www.rfc-editor.org/rfc/rfc9162">RFC 9162, Certificate Transparency (model)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C8</span>Publish in the e-Gazette</h3>
+<p>Satisfies the requirement to publish in the Official Gazette. Downloaded copies count as electronic versions. Courts presume an electronic Gazette genuine.</p>
+<ul class="refs"><li><a href="https://PRSINDIA.org/files/bills_acts/bills_parliament/2021/IT%20Act,%202000.pdf">IT Act, s.4 and s.8</a></li><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.4(ii)</a></li><li><a href="https://www.taxmanagementindia.com/visitor/detail_act.asp?ID=42096">Bharatiya Sakshya Adhiniyam, s.81</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">C9</span>Event and archive</h3>
+<p>A publication event goes to all subscribers. The file, XSLT, signatures and timestamps are archived together.</p>
+<ul class="refs"><li><a href="https://www.rfc-editor.org/rfc/rfc6283">RFC 6283, XMLERS</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.9(7)</a></li></ul></article>
+</section>
+
+<div class="joint"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v4c0 3-6 4-6 7v3M9 6c0 3 6 4 6 7v3"/><path d="M1 13.5 3 16l2-2.5M13 13.5l2 2.5 2-2.5"/></svg>Split by track</div>
+
+<!-- AFTER PUBLICATION -->
+<section class="group" aria-labelledby="g-after">
+<h2 class="group-title" id="g-after">D. After publication: steps for each track</h2>
+<div class="lanes">
+
+<div class="track track-acts">
+<h3 class="track-title">Acts</h3>
+
+<article class="step"><h3><span class="num">D1</span>State Gazettes</h3>
+<p>Copies go to all State Governments for their Official Gazettes. Sale copies are printed. <span class="prop">Proposal</span>The Fetch API serves this need.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 9.22(b), (c)</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D2</span>Commencement</h3>
+<p>On the date of assent, unless the Act states otherwise. Or on dates the Government appoints by notification, sometimes section by section. A commencement notification goes through B7 and C.</p>
+<ul class="refs"><li><a href="https://future.indiankanoon.org/doc/1006024/">General Clauses Act, s.5</a></li><li><a href="https://csr.icai.org/wp-content/uploads/2021/02/CompaniesActNotification1_2014-S.no_.-582.pdf">Example: S.O. 582(E)</a></li><li><a href="https://PRSINDIA.org/files/parliament/discussion_papers/1265278737--NOTIFICATION%20NOTE-complete.pdf">PRS note on notification of Acts</a></li></ul>
+<div class="branch branch-sub">Power in force: track B starts at B1 for the rules under this Act.</div></article>
+</div>
+
+<div class="track track-sub">
+<h3 class="track-title">Subordinate legislation</h3>
+
+<article class="step"><h3><span class="num">D3</span>Parliament Secretariats notified</h3>
+<p>Each statutory order goes to the Lok Sabha and Rajya Sabha Secretariats at the time of notification. Today by email; in BNL by the publication event.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.4(iii)</a></li><li><a href="https://eparlib.nic.in/bitstream/123456789/65888/1/16_Subordinate_Legislation_18.pdf">Committee on Subordinate Legislation, 18th report</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D4</span>Laid before Parliament</h3>
+<p>Within 15 days (30 for a State under President’s rule), in English and Hindi, with a statement. Re-laid if the period is not complete. Laid again after dissolution of the Lok Sabha.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.1, 11.5.2, 11.6.1, 11.6.2</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D5</span>Parliamentary motions</h3>
+<p>A motion to annul or modify. An approval motion where the Act requires approval before the rules take effect.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.7.1 to 11.7.4</a></li></ul>
+<div class="branch">Carried in both Houses: the ministry annuls or modifies the rules, then back to B7.</div></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D6</span>Committee on Subordinate Legislation</h3>
+<p>Scrutiny and report. Action taken within 6 months.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.8, 11.9</a></li></ul>
+<div class="branch">Rules amended on its recommendation: back to B2.</div></article>
+</div>
+
+</div>
+</section>
+
+<div class="joint"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v4c0 3 6 4 6 7v3M15 2v4c0 3-6 4-6 7"/><path d="M6 13l3 3 3-3"/></svg>Both tracks</div>
+
+<!-- ACCESS -->
+<section class="group" aria-labelledby="g-access">
+<h2 class="group-title" id="g-access">Access and change (both tracks)</h2>
+
+<article class="step"><h3><span class="num">D7</span>Public APIs</h3>
+<p><span class="prop">Proposal</span>Fetch a law by URI or by date. Verify a document or its hash. Subscribe to publication events. Offline verification also works, because the signatures are self-contained.</p>
+<ul class="refs"><li><a href="https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/os-part2-specs_xsd_Element_FRBRuri.html">AKN FRBRuri</a></li><li><a href="https://cca.gov.in/sites/files/pdf/ACT/GSR660.pdf">G.S.R. 660(E), r.10</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D8</span>Consumers</h3>
+<p>India Code: the Legislative Department compiles statutory rules there under the Allocation of Business Rules. Ministry websites and rules databases. Legal-tech services and courts. DigiLocker as a viewer that stores the URI only.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.12, 11.13, 11.15</a></li><li><a href="https://www.india.gov.in/category/justice-law-grievances/subcategory/your-rights-and-the-law/details/website-of-india-code">India Code</a></li><li><a href="https://cdn.apisetu.gov.in/portal/assets/workflow_issuer.pdf">DigiLocker URI model</a></li></ul></article>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></div>
+
+<article class="step"><h3><span class="num">D9</span>Change after publication</h3>
+<p>Corrigendum or lawful removal. The ministry decides if a corrigendum needs its own G.S.R. number, and lays only corrected copies. The new version goes through C1 to C9. Its log entry links to the previous hash. The old version is kept, marked as superseded.</p>
+<ul class="refs"><li><a href="https://www.legislative.gov.in/static/uploads/2025/09/686ac48c72bba20a0e8e650f6f48598c.pdf">Manual 11.5.7</a></li><li><a href="https://egazette.gov.in/WriteReadData/2022/235069.pdf">Example: Legislative Department corrigendum</a></li><li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202400741">EU Regulation 2024/741 (model)</a></li></ul></article>
+</section>
+
+<footer>
+<p>The Manual links open the full Manual of Parliamentary Procedures; use the paragraph numbers to find each step. The G.S.R. 660(E) link opens the scanned Gazette text of the Digital Signature (End Entity) Rules, 2015.</p>
+</footer>
+</main>
+</body>
+</html>
